@@ -57,7 +57,7 @@ class AutoComplete extends StatelessWidget {
                   Expanded(
                     child: Obx(() {
                       if (autoController.placeList.isEmpty) {
-                        return SizedBox(); // Trả về một SizedBox để ẩn danh sách
+                        return SizedBox();
                       } else {
                         return
                           Container(
@@ -84,12 +84,11 @@ class AutoComplete extends StatelessWidget {
                                       title: Text(autoController.placeList[index]
                                           ['description']),
                                       onTap: () {
-                                        // Cập nhật giá trị cho TextField và ẩn danh sách
                                         autoController.addressSearch.text =
                                             autoController.placeList[index]
                                                 ['description'];
                                         autoController.placeList
-                                            .clear(); // Xóa danh sách gợi ý
+                                            .clear();
                                         debugPrint(
                                             'Selected place: ${autoController.placeList[index]['description']}');
                                       },
