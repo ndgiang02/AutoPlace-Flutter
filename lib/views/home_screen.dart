@@ -63,16 +63,16 @@ class AutoComplete extends StatelessWidget {
                           Container(
                             width: 400,
                             constraints: BoxConstraints(maxHeight: 200),
-                      decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                      BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 8.0,
-                      ),
-                      ],
-                      ),
+                               decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                  boxShadow: [
+                                     BoxShadow(
+                                       color: Colors.black12,
+                                       blurRadius: 8.0,
+                                      ),
+                                  ],
+                               ),
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                             children: [
