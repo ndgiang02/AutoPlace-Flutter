@@ -31,7 +31,6 @@ class HomeController extends GetxController {
     Future<void> calculateDistance(double pickupLat, double pickupLng, double destinationLat, double destinationLng) async {
         final String url = 'https://distance-matrix-routing.p.rapidapi.com/distance';
 
-        // Tạo URL với các tham số cần thiết
         final Uri uri = Uri.parse('$url?origin=$pickupLat,$pickupLng&destination=$destinationLat,$destinationLng&order=lat_lon&priority=fast&vehicle=auto&units=km');
 
         final headers = {
@@ -44,13 +43,12 @@ class HomeController extends GetxController {
 
             if (response.statusCode == 200) {
                 final data = json.decode(response.body);
-                print('Response data: $data'); // In toàn bộ dữ liệu phản hồi để kiểm tra
+                print('Response data: $data'); 
 
-                // Truy cập dữ liệu khoảng cách
                 if (data != null && data['rows'] != null && data['rows'].isNotEmpty) {
                     final elements = data['rows'][0]['elements'];
                     if (elements != null && elements['distance'] != null) {
-                        distance.value = elements['distance']['value']; // Lưu khoảng cách (value) vào biến distance
+                        distance.value = elements['distance']['value'];
                         print('Distance: ${distance.value} meters');
                     } else {
                         print('Distance data not found in elements');
