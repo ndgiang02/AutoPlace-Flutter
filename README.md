@@ -4,5 +4,6 @@
 - State Management with GetX
 
 # Demo
+
 ![Alt text](assets/images/demo.png)
 
