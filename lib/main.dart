@@ -1,4 +1,5 @@
 import 'package:auto_complete_location/views/home_screen.dart';
+import 'package:auto_complete_location/views/auto_complete_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

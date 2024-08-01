@@ -1,5 +1,3 @@
-/*
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/home_controller.dart';
@@ -33,6 +31,7 @@ class AutoComplete extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
+                SizedBox(height: 20,),
                 Column(
                   children: [
                     TextField(
@@ -58,7 +57,7 @@ class AutoComplete extends StatelessWidget {
                         ),
                         hintText: 'Pickup Location',
                       ),
-                      onChanged: (String value) {
+                      onChanged: (String value) async {
                         autoController.getPickupPlace(value);
                         debugPrint('Pickup Value entered: $value');
                       },
@@ -89,10 +88,11 @@ class AutoComplete extends StatelessWidget {
                                     .pickupPlaceList[index]['description']!),
                                 onTap: () {
                                   autoController.pickupController.text =
-                                  autoController.pickupPlaceList[index]
-                                  ['description']!;
+                                      autoController.pickupPlaceList[index]
+                                          ['description']!;
                                   autoController.pickupPlaceList.clear();
-
+                                  autoController.fetchLatLngFromView(
+                                      autoController.pickupController.text);
                                 },
                                 leading: Icon(Icons.location_on_outlined,
                                     color: Colors.redAccent),
@@ -108,6 +108,9 @@ class AutoComplete extends StatelessWidget {
                         ),
                       );
                     }),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Obx(() {
                       return Visibility(
                         visible: autoController.pickupPlaceList.isEmpty,
@@ -161,18 +164,18 @@ class AutoComplete extends StatelessWidget {
                           child: ListView.separated(
                             shrinkWrap: true,
                             itemCount:
-                            autoController.destinationPlaceList.length,
+                                autoController.destinationPlaceList.length,
                             itemBuilder: (context, index) {
                               return ListTile(
                                 title: Text(
                                     autoController.destinationPlaceList[index]
-                                    ['description']!),
+                                        ['description']!),
                                 onTap: () {
                                   autoController.destinationController.text =
-                                  autoController.destinationPlaceList[index]
-                                  ['description']!;
+                                      autoController.destinationPlaceList[index]
+                                          ['description']!;
                                   autoController.destinationPlaceList.clear();
-                               },
+                                },
                                 leading: Icon(Icons.location_on_outlined,
                                     color: Colors.greenAccent),
                               );
@@ -187,6 +190,18 @@ class AutoComplete extends StatelessWidget {
                         ),
                       );
                     }),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        await autoController.getDistanceBetweenLocations();
+                      },
+                      child: Text('Calculate Distance'),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Obx(() {
                       return Text(
                         'Distance: ${autoController.distance.value.toStringAsFixed(2)} km',
@@ -206,6 +221,3 @@ class AutoComplete extends StatelessWidget {
     );
   }
 }
-
- */
-
