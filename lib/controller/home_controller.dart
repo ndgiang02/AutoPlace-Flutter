@@ -1,14 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
-
-import '../Dialog/show_dialog.dart';
 import '../constant/constant.dart';
 import '../service/api.dart';
 
@@ -32,46 +27,6 @@ class HomeController extends GetxController {
     void getDestinationPlace(String input) async {
       destinationPlaceList.value = await _apiService.getPlaceSuggestions(input);
     }
-/*
-    Future<void> calculateDistance(double pickupLat, double pickupLng, double destinationLat, double destinationLng) async {
-        final String url = 'https://distance-matrix-routing.p.rapidapi.com/distance';
-
-        // Tạo URL với các tham số cần thiết
-        final Uri uri = Uri.parse('$url?origin=$pickupLat,$pickupLng&destination=$destinationLat,$destinationLng&order=lat_lon&priority=fast&vehicle=auto&units=ml');
-
-        final headers = {
-            'X-RapidAPI-Key': API_KEY,
-            'X-RapidAPI-Host': 'distance-matrix-routing.p.rapidapi.com',
-        };
-
-        try {
-            final response = await http.get(uri, headers: headers);
-
-            if (response.statusCode == 200) {
-                final data = json.decode(response.body);
-                print('Response data: $data'); // In toàn bộ dữ liệu phản hồi để kiểm tra
-
-                // Kiểm tra trường distance trong phản hồi
-                if (data != null && data['results'] != null && data['results'].isNotEmpty) {
-                    final result = data['results'][0];
-                    if (result['distance'] != null) {
-                        distance.value = result['distance']; // Lưu khoảng cách
-                        print('Distance: ${distance.value} miles');
-                    } else {
-                        print('Distance data not found in results');
-                    }
-                } else {
-                    print('No results found in response');
-                }
-            } else {
-                print('Failed to load distance: ${response.statusCode}');
-            }
-        } catch (e) {
-            print("Error calculating distance: $e");
-        }
-    }
-
- */
 
     Future<void> calculateDistance(double pickupLat, double pickupLng, double destinationLat, double destinationLng) async {
         final String url = 'https://distance-matrix-routing.p.rapidapi.com/distance';
