@@ -5,5 +5,5 @@
 
 # Demo
 
-![Alt text](assets/images/demo.png)
+![Screenshot](assets/images/demo_copy.png)
 
